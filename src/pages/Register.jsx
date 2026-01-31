@@ -28,69 +28,149 @@ export default function Register() {
     };
 
     return (
-        <div className="news">
-            <div className="newsTitle">Criar Conta</div>
+        <div className="news fade-in">
+            <div className="newsTitle">🎮 Criar Conta</div>
             <div className="newsBody">
                 {error && (
-                    <div style={{ padding: '10px', background: '#ffebee', border: '1px solid #ef5350', borderRadius: '4px', marginBottom: '15px', color: '#c62828' }}>
-                        {error}
+                    <div style={{
+                        padding: '15px',
+                        background: 'rgba(255, 0, 110, 0.1)',
+                        border: '2px solid var(--color-accent-pink)',
+                        borderRadius: 'var(--radius-md)',
+                        marginBottom: '20px',
+                        color: 'var(--color-accent-pink)',
+                        fontWeight: '600',
+                        textAlign: 'center'
+                    }}>
+                        ⚠️ {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit}>
-                    <h3 style={{ marginBottom: '10px', color: '#232675' }}>Informações da Conta</h3>
+                    <h3 style={{
+                        marginBottom: '20px',
+                        color: 'var(--color-accent-cyan)',
+                        fontFamily: 'Rajdhani, sans-serif',
+                        fontSize: '1.5rem',
+                        fontWeight: '700',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                    }}>
+                        📋 Informações da Conta
+                    </h3>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '15px' }}>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Account Name:</label>
-                            <input type="text" className="input" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required minLength={4} />
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                        <div className="form-group">
+                            <label>👤 Account Name:</label>
+                            <input
+                                type="text"
+                                className="input"
+                                placeholder="Nome da conta"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                required
+                                minLength={4}
+                            />
                         </div>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Nickname:</label>
-                            <input type="text" className="input" value={formData.nickname} onChange={(e) => setFormData({ ...formData, nickname: e.target.value })} required minLength={4} />
+                        <div className="form-group">
+                            <label>✨ Nickname:</label>
+                            <input
+                                type="text"
+                                className="input"
+                                placeholder="Seu apelido"
+                                value={formData.nickname}
+                                onChange={(e) => setFormData({ ...formData, nickname: e.target.value })}
+                                required
+                                minLength={4}
+                            />
                         </div>
                     </div>
 
-                    <div style={{ marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Email:</label>
-                        <input type="email" className="input" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+                    <div className="form-group">
+                        <label>📧 Email:</label>
+                        <input
+                            type="email"
+                            className="input"
+                            placeholder="seu@email.com"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
+                        />
                     </div>
 
-                    <div style={{ marginBottom: '20px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Password:</label>
-                        <input type="password" className="input" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required minLength={4} />
+                    <div className="form-group">
+                        <label>🔒 Password:</label>
+                        <input
+                            type="password"
+                            className="input"
+                            placeholder="Senha segura"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            required
+                            minLength={4}
+                        />
                     </div>
 
-                    <h3 style={{ marginBottom: '10px', color: '#232675' }}>Primeiro Personagem</h3>
+                    <hr style={{ margin: '30px 0' }} />
 
-                    <div style={{ marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Character Name:</label>
-                        <input type="text" className="input" value={formData.characterName} onChange={(e) => setFormData({ ...formData, characterName: e.target.value })} required minLength={4} />
+                    <h3 style={{
+                        marginBottom: '20px',
+                        color: 'var(--color-accent-cyan)',
+                        fontFamily: 'Rajdhani, sans-serif',
+                        fontSize: '1.5rem',
+                        fontWeight: '700',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                    }}>
+                        ⚡ Primeiro Personagem
+                    </h3>
+
+                    <div className="form-group">
+                        <label>🎯 Character Name:</label>
+                        <input
+                            type="text"
+                            className="input"
+                            placeholder="Nome do personagem"
+                            value={formData.characterName}
+                            onChange={(e) => setFormData({ ...formData, characterName: e.target.value })}
+                            required
+                            minLength={4}
+                        />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '20px' }}>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Sex:</label>
-                            <select className="input" value={formData.sex} onChange={(e) => setFormData({ ...formData, sex: parseInt(e.target.value) })}>
-                                <option value={1}>Male</option>
-                                <option value={0}>Female</option>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
+                        <div className="form-group">
+                            <label>🚻 Sex:</label>
+                            <select
+                                className="input"
+                                value={formData.sex}
+                                onChange={(e) => setFormData({ ...formData, sex: parseInt(e.target.value) })}
+                            >
+                                <option value={1}>♂️ Male</option>
+                                <option value={0}>♀️ Female</option>
                             </select>
                         </div>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Vocation:</label>
-                            <select className="input" value={formData.vocation} onChange={(e) => setFormData({ ...formData, vocation: parseInt(e.target.value) })}>
-                                <option value={1}>Pokemon Trainer</option>
+                        <div className="form-group">
+                            <label>⚔️ Vocation:</label>
+                            <select
+                                className="input"
+                                value={formData.vocation}
+                                onChange={(e) => setFormData({ ...formData, vocation: parseInt(e.target.value) })}
+                            >
+                                <option value={1}>🎮 Pokemon Trainer</option>
                             </select>
                         </div>
                     </div>
 
                     <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={loading}>
-                        {loading ? 'Criando...' : 'Criar Conta'}
+                        {loading ? '⏳ Criando...' : '🚀 Criar Conta'}
                     </button>
                 </form>
 
-                <p style={{ marginTop: '15px', textAlign: 'center' }}>
-                    Já tem uma conta? <Link to="/login" style={{ color: '#232675', fontWeight: 'bold' }}>Fazer Login</Link>
+                <hr />
+
+                <p style={{ marginTop: '20px', textAlign: 'center', fontSize: '1rem' }}>
+                    Já tem uma conta? <Link to="/login" className="text-gradient" style={{ fontWeight: 'bold', textDecoration: 'none' }}>Fazer Login</Link>
                 </p>
             </div>
         </div>

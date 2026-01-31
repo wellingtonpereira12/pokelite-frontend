@@ -17,16 +17,16 @@ const Navbar = () => {
         <div id="cssmenu">
             <ul>
                 <a href="/" style={{
-                    paddingLeft: '30px',
+                    paddingLeft: '20px',
                     position: 'static',
                     float: 'left',
-                    margin: '-10px -10px -10px -10px',
+                    margin: '-8px 0',
                     zIndex: 2
                 }}>
                     <img
                         src="/img/banner.png"
                         className="img-responsive"
-                        style={{ maxWidth: '200px' }}
+                        style={{ maxWidth: '150px' }}
                         alt="PokeElite"
                     />
                 </a>
@@ -110,13 +110,12 @@ const Navbar = () => {
                 {isAuthenticated ? (
                     <li style={{
                         float: 'right',
-                        marginRight: '50px',
-                        position: 'relative',
-                        color: '#e3e51f'
+                        marginRight: '40px',
+                        position: 'relative'
                     }} className="has-sub">
                         <a href="#">
-                            <i className="fa fa-fw fa-navicon" style={{ color: '#e3e51f' }}></i>
-                            <span style={{ color: '#e3e51f', fontWeight: 'bold' }}>Conta</span>
+                            <i className="fa fa-fw fa-navicon"></i>
+                            <span style={{ fontWeight: 'bold' }}>Conta</span>
                         </a>
                         <ul>
                             <li>
@@ -139,9 +138,8 @@ const Navbar = () => {
                 ) : (
                     <li style={{
                         float: 'right',
-                        marginRight: '50px',
-                        position: 'relative',
-                        color: '#c3c3c3'
+                        marginRight: '40px',
+                        position: 'relative'
                     }} className="has-sub">
                         <a href="#">
                             <i className="fa fa-fw fa-navicon"></i> Conta
