@@ -158,6 +158,38 @@ body {
 /* ============================================
    NAVIGATION - LEGION STYLE
    ============================================ */
+/* Header & Toggle */
+.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  height: 100%;
+}
+
+.logo img {
+  max-height: 50px;
+  width: auto;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-lg);
+}
+
+.menu-toggle:hover {
+  color: var(--color-accent-primary);
+}
+
 #cssmenu {
   position: sticky;
   top: 0;
@@ -169,6 +201,8 @@ body {
   border-bottom: 2px solid var(--color-accent-primary);
   box-shadow: var(--shadow-lg), 0 2px 20px rgba(0, 210, 255, 0.2);
   font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  align-items: stretch;
 }
 
 
@@ -188,7 +222,14 @@ body {
   padding: 0;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.account-menu {
+  margin-left: auto;
+  margin-right: var(--spacing-2xl);
 }
 
 #cssmenu>ul>li {
@@ -249,6 +290,8 @@ body {
   transform: translateY(-10px);
   transition: all var(--transition-base);
   overflow: hidden;
+  display: block;
+  /* Force block to stack items vertically */
 }
 
 #cssmenu li:hover>ul {
@@ -729,6 +772,42 @@ hr {
     --spacing-2xl: 2rem;
   }
 
+  #cssmenu {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .navbar-header {
+    width: 100%;
+    padding: var(--spacing-sm) 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  #cssmenu ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+  }
+
+  #cssmenu ul.open {
+    display: flex;
+    animation: fadeInUp 0.3s ease;
+  }
+
+  #cssmenu>ul>li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  #cssmenu>ul>li>a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   #topo {
     height: 120px;
   }
@@ -929,9 +1008,91 @@ hr {
     height: 120px;
   }
 
+  /* Improved Mobile Menu */
+  #cssmenu {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .navbar-header {
+    width: 100%;
+    padding: var(--spacing-sm) 0;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-right: var(--spacing-md);
+  }
+
+  #cssmenu ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+  }
+
+  #cssmenu ul.open {
+    display: flex;
+    animation: fadeInUp 0.3s ease;
+  }
+
+  #cssmenu>ul>li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
   #cssmenu>ul>li>a {
-    padding: var(--spacing-md);
-    font-size: 0.85rem;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.95rem;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  #cssmenu>ul>li>a::before {
+    display: none;
+    /* Remove underline effect on mobile */
+  }
+
+  /* Mobile Dropdowns */
+  #cssmenu ul ul {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    width: 100%;
+    min-width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    display: none;
+    /* Controlled by React/JS state or hover */
+    margin: 0;
+  }
+
+  /* Show submenu on hover for mobile if we want simple behavior, 
+     or rely on JS to add .active class */
+  #cssmenu li:hover>ul {
+    display: block;
+    animation: fadeIn 0.2s ease;
+  }
+
+  #cssmenu ul ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  #cssmenu ul ul li a {
+    padding: var(--spacing-md) var(--spacing-xl);
+    padding-left: var(--spacing-2xl);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  #cssmenu ul ul li a:hover {
+    color: var(--color-accent-primary);
+    background: rgba(77, 171, 247, 0.05);
+    padding-left: calc(var(--spacing-2xl) + 5px);
   }
 
   .newsTitle,
@@ -1421,20 +1582,49 @@ hr {
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 600px;
+    min-height: auto;
+    padding-bottom: var(--spacing-3xl);
+    height: auto;
   }
 
   .hero-section h1 {
     font-size: 2rem;
   }
 
+  /* Reset float right for account on mobile */
+  .account-menu {
+    margin: 0;
+  }
+
   .hero-buttons {
     flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .btn-lg {
+    width: 100%;
+    min-width: 0;
   }
 
   .stats-grid,
   .systems-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Fix Overlapping Stats */
+  .hero-stats-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: var(--spacing-xl);
+    flex-direction: column;
+    width: 100%;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .hero-stat-card {
+    width: 100%;
+    min-width: 0;
   }
 }
 

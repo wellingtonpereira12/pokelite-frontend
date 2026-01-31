@@ -6,6 +6,14 @@ const Navbar = () => {
     const location = useLocation();
     const { isAuthenticated, logout } = useAuthStore();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeSubMenu, setActiveSubMenu] = useState(null);
+
+    const toggleSubMenu = (e, menuId) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            setActiveSubMenu(activeSubMenu === menuId ? null : menuId);
+        }
+    };
 
     const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -15,21 +23,19 @@ const Navbar = () => {
 
     return (
         <div id="cssmenu">
-            <ul>
-                <a href="/" style={{
-                    paddingLeft: '20px',
-                    position: 'static',
-                    float: 'left',
-                    margin: '-8px 0',
-                    zIndex: 2
-                }}>
+            <div className="navbar-header">
+                <a href="/" className="logo">
                     <img
                         src="/img/banner.png"
                         className="img-responsive"
-                        style={{ maxWidth: '150px' }}
                         alt="PokeElite"
                     />
                 </a>
+                <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    <i className={`fa fa-fw ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                </div>
+            </div>
+            <ul className={menuOpen ? 'open' : ''}>
 
                 <li className={isActive('/')}>
                     <Link to="/">
@@ -37,9 +43,10 @@ const Navbar = () => {
                     </Link>
                 </li>
 
-                <li className="has-sub">
-                    <a href="#">
+                <li className={`has-sub ${activeSubMenu === 'community' ? 'active-menu' : ''}`}>
+                    <a href="#" onClick={(e) => toggleSubMenu(e, 'community')}>
                         <i className="fa fa-fw fa-group"></i> Comunidade
+                        <span className="arrow"></span>
                     </a>
                     <ul>
                         <li>
@@ -65,9 +72,10 @@ const Navbar = () => {
                     </ul>
                 </li>
 
-                <li className="has-sub">
-                    <a href="#">
+                <li className={`has-sub ${activeSubMenu === 'download' ? 'active-menu' : ''}`}>
+                    <a href="#" onClick={(e) => toggleSubMenu(e, 'download')}>
                         <i className="fa fa-fw fa-download"></i> DOWNLOAD
+                        <span className="arrow"></span>
                     </a>
                     <ul>
                         <li>
@@ -78,9 +86,10 @@ const Navbar = () => {
                     </ul>
                 </li>
 
-                <li className="has-sub">
-                    <a href="#">
+                <li className={`has-sub ${activeSubMenu === 'support' ? 'active-menu' : ''}`}>
+                    <a href="#" onClick={(e) => toggleSubMenu(e, 'support')}>
                         <i className="fa fa-fw fa-life-bouy"></i> SUPORTE
+                        <span className="arrow"></span>
                     </a>
                     <ul>
                         <li>
@@ -108,14 +117,11 @@ const Navbar = () => {
                 </li>
 
                 {isAuthenticated ? (
-                    <li style={{
-                        float: 'right',
-                        marginRight: '40px',
-                        position: 'relative'
-                    }} className="has-sub">
-                        <a href="#">
+                    <li className={`account-menu has-sub ${activeSubMenu === 'account' ? 'active-menu' : ''}`}>
+                        <a href="#" onClick={(e) => toggleSubMenu(e, 'account')}>
                             <i className="fa fa-fw fa-navicon"></i>
                             <span style={{ fontWeight: 'bold' }}>Conta</span>
+                            <span className="arrow"></span>
                         </a>
                         <ul>
                             <li>
@@ -136,13 +142,10 @@ const Navbar = () => {
                         </ul>
                     </li>
                 ) : (
-                    <li style={{
-                        float: 'right',
-                        marginRight: '40px',
-                        position: 'relative'
-                    }} className="has-sub">
-                        <a href="#">
+                    <li className={`account-menu has-sub ${activeSubMenu === 'account-guest' ? 'active-menu' : ''}`}>
+                        <a href="#" onClick={(e) => toggleSubMenu(e, 'account-guest')}>
                             <i className="fa fa-fw fa-navicon"></i> Conta
+                            <span className="arrow"></span>
                         </a>
                         <ul>
                             <li>
