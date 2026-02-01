@@ -143,11 +143,6 @@ export default function Home() {
                         <p>Complete missões e ganhe recompensas exclusivas todos os dias</p>
                     </div>
                     <div className="system-card">
-                        <div className="system-icon orange">🔥</div>
-                        <h3>Sistema de Breeding</h3>
-                        <p>Crie Pokémons poderosos com IVs e Nature perfeitos</p>
-                    </div>
-                    <div className="system-card">
                         <div className="system-icon blue">⚡</div>
                         <h3>Eventos Semanais</h3>
                         <p>Participe de eventos especiais com prêmios incríveis</p>

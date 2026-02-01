@@ -50,7 +50,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="footer-bottom">
-                <p>© 2026 PokeElite by EmpireSoft - Todos os direitos reservados</p>
+                <p>© 2026 PokeElite - Todos os direitos reservados</p>
             </div>
         </footer>
     );

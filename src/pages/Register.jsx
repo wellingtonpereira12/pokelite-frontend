@@ -4,8 +4,7 @@ import { useAuthStore } from '../store/authStore';
 
 export default function Register() {
     const [formData, setFormData] = useState({
-        name: '', password: '', email: '', nickname: '',
-        characterName: '', sex: 1, vocation: 1, city: 1, world: 0
+        name: '', password: '', email: '', nickname: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -111,56 +110,7 @@ export default function Register() {
                         />
                     </div>
 
-                    <hr style={{ margin: '30px 0' }} />
-
-                    <h3 style={{
-                        marginBottom: '20px',
-                        color: 'var(--color-accent-cyan)',
-                        fontFamily: 'Rajdhani, sans-serif',
-                        fontSize: '1.5rem',
-                        fontWeight: '700',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px'
-                    }}>
-                        ⚡ Primeiro Personagem
-                    </h3>
-
-                    <div className="form-group">
-                        <label>🎯 Character Name:</label>
-                        <input
-                            type="text"
-                            className="input"
-                            placeholder="Nome do personagem"
-                            value={formData.characterName}
-                            onChange={(e) => setFormData({ ...formData, characterName: e.target.value })}
-                            required
-                            minLength={4}
-                        />
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
-                        <div className="form-group">
-                            <label>🚻 Sex:</label>
-                            <select
-                                className="input"
-                                value={formData.sex}
-                                onChange={(e) => setFormData({ ...formData, sex: parseInt(e.target.value) })}
-                            >
-                                <option value={1}>♂️ Male</option>
-                                <option value={0}>♀️ Female</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>⚔️ Vocation:</label>
-                            <select
-                                className="input"
-                                value={formData.vocation}
-                                onChange={(e) => setFormData({ ...formData, vocation: parseInt(e.target.value) })}
-                            >
-                                <option value={1}>🎮 Pokemon Trainer</option>
-                            </select>
-                        </div>
-                    </div>
+                    <br />
 
                     <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={loading}>
                         {loading ? '⏳ Criando...' : '🚀 Criar Conta'}
