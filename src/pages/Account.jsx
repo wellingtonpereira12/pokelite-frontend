@@ -17,7 +17,7 @@ export default function Account() {
         try {
             await fetchUser();
             const { data } = await api.get('/characters/my');
-            setCharacters(data.characters);
+            setCharacters(Array.isArray(data.characters) ? data.characters : []);
         } catch (error) {
             console.error('Failed to load data:', error);
         } finally {
