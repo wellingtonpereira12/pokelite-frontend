@@ -10,7 +10,7 @@ export default defineConfig({
     port: 1000,
     proxy: {
       '/api': {
-        target: 'https://pokelite-backend.onrender.com',
+        target: 'http://localhost:5001',
         changeOrigin: true
       }
     }
